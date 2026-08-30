@@ -1,0 +1,32 @@
+# секреты и локальные настройки
+.env
+.env.local
+*.pem
+*.key
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# node
+node_modules/
+dist/
+.vite/
+coverage/
+*.tsbuildinfo
+
+# данные докера и локальные тома
+infra/volumes/
+
+# редакторы и ос
+.idea/
+.vscode/
+.DS_Store

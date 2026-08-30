@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "source": "ТЗ v3, раздел 6.2 и приложение А",
+  "priorities": [
+    { "code": "P0", "title": "Немедленно", "response_minutes": 3 },
+    { "code": "P1", "title": "Срочно", "response_minutes": 15 },
+    { "code": "P2", "title": "Обычный", "response_minutes": 60 },
+    { "code": "P3", "title": "По возможности", "response_minutes": null }
+  ],
+  "categories": [
+    {
+      "code": "observer_not_admitted",
+      "title": "Недопуск наблюдателя на участок",
+      "priority": "P0",
+      "response_minutes": 3,
+      "requires_call": true
+    },
+    {
+      "code": "observer_removed",
+      "title": "Удаление наблюдателя с участка",
+      "priority": "P0",
+      "response_minutes": 3,
+      "requires_call": true
+    },
+    {
+      "code": "pressure_threats",
+      "title": "Давление или угрозы",
+      "priority": "P0",
+      "response_minutes": 3,
+      "requires_call": true
+    },
+    {
+      "code": "seal_mismatch",
+      "title": "Нарушения ночного хранения и сейф-пакетов",
+      "priority": "P0",
+      "response_minutes": 5,
+      "requires_call": false
+    },
+    {
+      "code": "ballot_stuffing",
+      "title": "Вброс бюллетеней",
+      "priority": "P0",
+      "response_minutes": 5,
+      "requires_call": false
+    },
+    {
+      "code": "organized_voting",
+      "title": "Подвоз и организованное голосование",
+      "priority": "P0",
+      "response_minutes": 5,
+      "requires_call": false
+    },
+    {
+      "code": "voting_for_another",
+      "title": "Голосование за другого",
+      "priority": "P0",
+      "response_minutes": 5,
+      "requires_call": false
+    },
+    {
+      "code": "documents_refused",
+      "title": "Отказ в ознакомлении с документами",
+      "priority": "P1",
+      "response_minutes": 15,
+      "requires_call": false
+    },
+    {
+      "code": "table_access_refused",
+      "title": "Недопуск к столу выдачи бюллетеней",
+      "priority": "P1",
+      "response_minutes": 15,
+      "requires_call": false
+    },
+    {
+      "code": "voter_list_problem",
+      "title": "Проблемы со списком избирателей",
+      "priority": "P1",
+      "response_minutes": 15,
+      "requires_call": false,
+      "warn_before_camera": true
+    },
+    {
+      "code": "ballot_secrecy",
+      "title": "Нарушение тайны голосования",
+      "priority": "P1",
+      "response_minutes": 15,
+      "requires_call": false
+    },
+    {
+      "code": "home_voting",
+      "title": "Нарушения при надомном голосовании",
+      "priority": "P1",
+      "response_minutes": 15,
+      "requires_call": false
+    },
+    {
+      "code": "counting",
+      "title": "Нарушения при подсчёте",
+      "priority": "P1",
+      "response_minutes": 15,
+      "requires_call": false
+    },
+    {
+      "code": "protocol",
+      "title": "Нарушения при составлении протокола",
+      "priority": "P1",
+      "response_minutes": 15,
+      "requires_call": false
+    },
+    {
+      "code": "protocol_copy_refused",
+      "title": "Отказ выдать заверенную копию протокола",
+      "priority": "P1",
+      "response_minutes": 15,
+      "requires_call": false
+    },
+    {
+      "code": "data_mismatch",
+      "title": "Расхождение данных",
+      "priority": "P1",
+      "response_minutes": 15,
+      "requires_call": false
+    },
+    {
+      "code": "campaigning",
+      "title": "Агитация в помещении и рядом",
+      "priority": "P2",
+      "response_minutes": 60,
+      "requires_call": false
+    },
+    {
+      "code": "koib_keg",
+      "title": "Нарушения при работе с КОИБ и КЭГ",
+      "priority": "P2",
+      "response_minutes": 60,
+      "requires_call": false
+    },
+    {
+      "code": "deg",
+      "title": "Вопросы по ДЭГ",
+      "priority": "P2",
+      "response_minutes": 60,
+      "requires_call": false
+    },
+    {
+      "code": "technical",
+      "title": "Технические проблемы",
+      "priority": "P3",
+      "response_minutes": null,
+      "requires_call": false
+    },
+    {
+      "code": "other",
+      "title": "Иное",
+      "priority": "P3",
+      "response_minutes": null,
+      "requires_call": false
+    }
+  ]
+}
