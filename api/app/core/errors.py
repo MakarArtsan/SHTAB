@@ -10,6 +10,14 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+
+class AccessDenied(Exception):
+    """Запрошены данные вне поддерева пользователя.
+
+    Причину наружу не раскрываем: ответ одинаков и для «нет прав»,
+    и для «нет такого узла», чтобы по коду ответа нельзя было разведать дерево.
+    """
+
 # Тексты по кодам ответа. Пользователю не показываем ни номер ошибки, ни стек.
 _MESSAGES: dict[int, str] = {
     400: "Не удалось обработать запрос. Проверьте данные и попробуйте ещё раз.",
@@ -48,6 +56,10 @@ def register_error_handlers(app: FastAPI) -> None:
     @app.exception_handler(StarletteHTTPException)
     async def _http_error(_: Request, exc: StarletteHTTPException) -> JSONResponse:
         return error_response(exc.status_code)
+
+    @app.exception_handler(AccessDenied)
+    async def _access_denied(_: Request, __: AccessDenied) -> JSONResponse:
+        return error_response(403)
 
     @app.exception_handler(RequestValidationError)
     async def _validation_error(_: Request, exc: RequestValidationError) -> JSONResponse:
