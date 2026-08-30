@@ -1,0 +1,45 @@
+# Продакшн-конфигурация. Локально не используется — там api и web открыты напрямую.
+# Caddy сам получает и продлевает сертификат Let's Encrypt для {$DOMAIN}.
+
+{
+	email {$ACME_EMAIL}
+}
+
+{$DOMAIN} {
+	encode zstd gzip
+
+	# WebSocket и HTTP API — на бэкенд без изменения пути.
+	handle /api/* {
+		reverse_proxy api:8000
+	}
+	handle /ws {
+		reverse_proxy api:8000
+	}
+	handle /health {
+		reverse_proxy api:8000
+	}
+
+	# Остальное — собранный PWA. Неизвестные пути отдаём index.html,
+	# иначе перезагрузка внутреннего маршрута приложения даст 404.
+	handle {
+		root * /srv/web
+		try_files {path} /index.html
+		file_server
+	}
+
+	# Service worker не кэшируем, иначе пользователь застрянет на старой версии.
+	@sw path /sw.js /service-worker.js
+	header @sw Cache-Control "no-cache"
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "same-origin"
+	}
+}
+
+# Отдельный поддомен для медиа: presigned-ссылки подписываются под этот адрес,
+# поэтому путь менять нельзя.
+s3.{$DOMAIN} {
+	reverse_proxy minio:9000
+}
